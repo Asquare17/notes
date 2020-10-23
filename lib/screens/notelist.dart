@@ -57,7 +57,7 @@ class _NoteListState extends State<NoteList> {
             direction: DismissDirection.startToEnd,
             onDismissed: (direction) {},
             confirmDismiss: (direction) async {
-              final result = showDialog(
+              final Future<bool> result = showDialog(
                 context: context,
                 builder: (context) => NoteDelete(),
               );
