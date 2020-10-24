@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes/models/noteService.dart';
 import 'package:notes/models/notes.dart';
 import 'package:notes/screens/noteDelete.dart';
 import 'package:notes/screens/noteModify.dart';
@@ -9,28 +10,17 @@ class NoteList extends StatefulWidget {
 }
 
 class _NoteListState extends State<NoteList> {
-  final notes = [
-    new Notes(
-      notesId: '12',
-      notesTitle: 'HEllo',
-      createdDateTime: DateTime.now(),
-      lastEditedDateTime: DateTime.now(),
-    ),
-    new Notes(
-      notesId: '13',
-      notesTitle: 'Hi',
-      createdDateTime: DateTime.now(),
-      lastEditedDateTime: DateTime.now(),
-    ),
-    new Notes(
-      notesId: '14',
-      notesTitle: 'Sleep',
-      createdDateTime: DateTime.now(),
-      lastEditedDateTime: DateTime.now(),
-    ),
-  ];
+  NoteService service = NoteService();
+  List<Notes> notes = [];
+
   String formatDateTime(DateTime dateTime) {
     return '${dateTime.day}/${dateTime.month}/${dateTime.year}';
+  }
+
+  @override
+  void initState() {
+    notes = service.getNotesList();
+    super.initState();
   }
 
   @override
